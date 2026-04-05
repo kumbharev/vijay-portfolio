@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Vijay Portfolio</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(120deg, #1e3c72, #2a5298);
+    color: white;
+    text-align: center;
+}
+
+.container {
+    padding: 40px;
+}
+
+h1 {
+    font-size: 40px;
+}
+
+.card {
+    background: rgba(255,255,255,0.1);
+    margin: 20px auto;
+    padding: 20px;
+    border-radius: 15px;
+    width: 80%;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    transition: transform 0.3s;
+}
+
+.card:hover {
+    transform: scale(1.05);
+}
+
+button {
+    padding: 10px 20px;
+    border: none;
+    background: #ff9800;
+    color: white;
+    font-size: 16px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #e68900;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+    <h1>Vijay Kumbhare</h1>
+    <p>CSV Engineer | Cloud Security Learner</p>
+
+    <div class="card">
+        <h2>Skills</h2>
+        <p>CSV | GAMP 5 | Azure Security | AWS</p>
+    </div>
+
+    <div class="card">
+        <h2>Experience</h2>
+        <p>2.9 Years in Pharmaceutical Validation</p>
+    </div>
+
+    <div class="card">
+        <h2>Certification</h2>
+        <p>AWS Solution Architect | AZ-500 (In Progress)</p>
+    </div>
+
+    <button onclick="showMessage()">Click Me</button>
+    <p id="msg"></p>
+</div>
+
+<script>
+function showMessage() {
+    document.getElementById("msg").innerHTML = "🚀 Welcome to my portfolio!";
+}
+</script>
+
+</body>
+</html>
