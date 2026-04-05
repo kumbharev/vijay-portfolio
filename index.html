@@ -2,60 +2,126 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<meta name="profile-img" content="width=device-width, initial-scale=1.0">
 <title>Vijay Portfolio</title>
 
 <style>
-body {
+* {
     margin: 0;
-    font-family: Arial, sans-serif;
-    background: linear-gradient(120deg, #1e3c72, #2a5298);
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(135deg, #667eea, #764ba2, #ff758c);
+    background-size: 300% 300%;
+    animation: gradientMove 8s ease infinite;
     color: white;
     text-align: center;
 }
 
+/* Background Animation */
+@keyframes gradientMove {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
 .container {
-    padding: 40px;
-}
-
-h1 {
-    font-size: 40px;
-}
-
-.card {
-    background: rgba(255,255,255,0.1);
-    margin: 20px auto;
+    max-width: 900px;
+    margin: auto;
     padding: 20px;
-    border-radius: 15px;
+}
+
+/* Profile Image */
+.profile-img {
+    width: 160px;
+    height: 160px;
+    border-radius: 50%;
+    margin-top: 20px;
+    object-fit: cover;
+    border: 5px solid white;
+    box-shadow: 0 0 25px rgba(255,255,255,0.8),
+                0 0 50px rgba(118,75,162,0.8);
+    animation: float 4s ease-in-out infinite;
+}
+
+@keyframes float {
+    0% { transform: translateY(0); }
+    50% { transform: translateY(-15px); }
+    100% { transform: translateY(0); }
+}
+
+/* Heading */
+h1 {
+    font-size: 36px;
+    margin-top: 10px;
+}
+
+/* Typing */
+.typing {
+    margin: 10px 0;
+    font-size: 18px;
+    border-right: 2px solid white;
+    display: inline-block;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+/* Cards */
+.card {
+    margin: 25px auto;
     width: 80%;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-    transition: transform 0.3s;
+    padding: 25px;
+    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(15px);
+    box-shadow: 0 8px 30px rgba(0,0,0,0.4);
+    transition: 0.4s;
 }
 
 .card:hover {
-    transform: scale(1.05);
+    transform: translateY(-10px) scale(1.03);
 }
 
+/* Button */
 button {
-    padding: 10px 20px;
+    padding: 12px 30px;
     border: none;
-    background: #ff9800;
-    color: white;
+    border-radius: 30px;
     font-size: 16px;
-    border-radius: 10px;
+    color: white;
+    background: linear-gradient(45deg, #ff758c, #ff7eb3);
+    box-shadow: 0 5px 15px rgba(255,118,136,0.5);
     cursor: pointer;
+    transition: 0.3s;
 }
 
 button:hover {
-    background: #e68900;
+    transform: scale(1.1);
+    box-shadow: 0 8px 25px rgba(255,118,136,0.8);
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+    h1 { font-size: 24px; }
+    .profile-img { width: 120px; height: 120px; }
+    .card { width: 90%; }
 }
 </style>
+
 </head>
 
 <body>
 
 <div class="container">
+
     <h1>Vijay Kumbhare</h1>
-    <p>CSV Engineer | Cloud Security Learner</p>
+
+    <img src="profile.jpg" alt="Vijay" class="profile-img">
+
+    <p class="typing" id="typing"></p>
 
     <div class="card">
         <h2>Skills</h2>
@@ -68,17 +134,32 @@ button:hover {
     </div>
 
     <div class="card">
-        <h2>Certification</h2>
+        <h2>Certifications</h2>
         <p>AWS Solution Architect | AZ-500 (In Progress)</p>
     </div>
 
-    <button onclick="showMessage()">Click Me</button>
+    <button onclick="showMessage()">Hire Me</button>
     <p id="msg"></p>
+
 </div>
 
 <script>
+// Typing Effect
+const text = "CSV Engineer | Cloud Security | IT Compliance";
+let i = 0;
+
+function typingEffect() {
+    if (i < text.length) {
+        document.getElementById("typing").innerHTML += text.charAt(i);
+        i++;
+        setTimeout(typingEffect, 50);
+    }
+}
+typingEffect();
+
+// Button Message
 function showMessage() {
-    document.getElementById("msg").innerHTML = "🚀 Welcome to my portfolio!";
+    document.getElementById("msg").innerHTML = "🚀 Let's Work Together!";
 }
 </script>
 
