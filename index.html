@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="profile-img" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Vijay Portfolio</title>
 
 <style>
@@ -12,6 +12,7 @@
     box-sizing: border-box;
 }
 
+/* Background */
 body {
     font-family: 'Segoe UI', sans-serif;
     background: linear-gradient(135deg, #667eea, #764ba2, #ff758c);
@@ -21,13 +22,13 @@ body {
     text-align: center;
 }
 
-/* Background Animation */
 @keyframes gradientMove {
     0% { background-position: 0% 50%; }
     50% { background-position: 100% 50%; }
     100% { background-position: 0% 50%; }
 }
 
+/* Container */
 .container {
     max-width: 900px;
     margin: auto;
@@ -39,11 +40,12 @@ body {
     width: 160px;
     height: 160px;
     border-radius: 50%;
-    margin-top: 20px;
-    object-fit: cover;
     border: 5px solid white;
+    object-fit: cover;
+
     box-shadow: 0 0 25px rgba(255,255,255,0.8),
                 0 0 50px rgba(118,75,162,0.8);
+
     animation: float 4s ease-in-out infinite;
 }
 
@@ -56,29 +58,37 @@ body {
 /* Heading */
 h1 {
     font-size: 36px;
-    margin-top: 10px;
+    margin-top: 15px;
 }
 
 /* Typing */
 .typing {
-    margin: 10px 0;
-    font-size: 18px;
     border-right: 2px solid white;
     display: inline-block;
-    white-space: nowrap;
-    overflow: hidden;
+    margin-top: 10px;
 }
 
 /* Cards */
 .card {
     margin: 25px auto;
-    width: 80%;
+    width: 85%;
     padding: 25px;
     border-radius: 20px;
-    background: rgba(255, 255, 255, 0.1);
+
+    background: rgba(255,255,255,0.1);
     backdrop-filter: blur(15px);
+
     box-shadow: 0 8px 30px rgba(0,0,0,0.4);
     transition: 0.4s;
+
+    opacity: 0;
+    transform: translateY(40px);
+}
+
+/* Scroll animation */
+.card.show {
+    opacity: 1;
+    transform: translateY(0);
 }
 
 .card:hover {
@@ -92,22 +102,22 @@ button {
     border-radius: 30px;
     font-size: 16px;
     color: white;
+
     background: linear-gradient(45deg, #ff758c, #ff7eb3);
     box-shadow: 0 5px 15px rgba(255,118,136,0.5);
+
     cursor: pointer;
-    transition: 0.3s;
+    margin-top: 20px;
 }
 
 button:hover {
     transform: scale(1.1);
-    box-shadow: 0 8px 25px rgba(255,118,136,0.8);
 }
 
 /* Mobile */
 @media (max-width: 600px) {
     h1 { font-size: 24px; }
     .profile-img { width: 120px; height: 120px; }
-    .card { width: 90%; }
 }
 </style>
 
@@ -117,31 +127,42 @@ button:hover {
 
 <div class="container">
 
-    <h1>Vijay Kumbhare</h1>
+    <img src="profile.jpg" class="profile-img">
 
-    <img src="profile.jpg" alt="Vijay" class="profile-img">
+    <h1>Vijay Kumbhare</h1>
 
     <p class="typing" id="typing"></p>
 
+    <!-- ABOUT -->
+    <div class="card">
+        <h2>About Me</h2>
+        <p>
+            I am a Computer System Validation (CSV) Engineer with 2.9 years of experience 
+            in pharmaceutical industry. I have strong knowledge of GAMP 5, 21 CFR Part 11, 
+            and validation lifecycle. Currently, I am upskilling in Azure Security and 
+            IT Compliance to build a career in cloud-based validation and security roles.
+        </p>
+    </div>
+
+    <!-- SKILLS -->
     <div class="card">
         <h2>Skills</h2>
-        <div class="card">    
-   
-</div>
-        <p>CSV | GAMP 5 | Azure Security | AWS</p>
+        <p>CSV | GAMP 5 | Azure Security | AWS | Audit Trail | Risk Assessment</p>
     </div>
 
+    <!-- EXPERIENCE -->
     <div class="card">
         <h2>Experience</h2>
-        <p>4 Years in Pharmaceutical Validation</p>
+        <p>2.9 Years in Pharmaceutical Validation</p>
     </div>
 
+    <!-- CERTIFICATION -->
     <div class="card">
         <h2>Certifications</h2>
         <p>AWS Solution Architect | AZ-500 (In Progress)</p>
     </div>
 
-    <button onclick="showMessage()">kumbharev71@gmail.com</button>
+    <button onclick="showMessage()">Hire Me</button>
     <p id="msg"></p>
 
 </div>
@@ -151,19 +172,33 @@ button:hover {
 const text = "CSV Engineer | Cloud Security | IT Compliance";
 let i = 0;
 
-function typingEffect() {
+function typing() {
     if (i < text.length) {
         document.getElementById("typing").innerHTML += text.charAt(i);
         i++;
-        setTimeout(typingEffect, 50);
+        setTimeout(typing, 50);
     }
 }
-typingEffect();
+typing();
 
 // Button Message
 function showMessage() {
     document.getElementById("msg").innerHTML = "🚀 Let's Work Together!";
 }
+
+// Scroll Animation
+const cards = document.querySelectorAll(".card");
+
+window.addEventListener("scroll", () => {
+    cards.forEach(card => {
+        let position = card.getBoundingClientRect().top;
+        let screen = window.innerHeight;
+
+        if (position < screen - 100) {
+            card.classList.add("show");
+        }
+    });
+});
 </script>
 
 </body>
